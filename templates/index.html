@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Welcome to Chatrooms!</h1>
-<h3>Hey there,{% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Guest{% endif %}!</h3>
+<h3>Hey there, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Guest{% endif %}!</h3>
 
 {% if current_user.is_authenticated == false %}
     <h3>Please Login or Sign Up below to get chatting</h3>
