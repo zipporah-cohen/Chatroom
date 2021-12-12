@@ -1,0 +1,89 @@
+body {
+    width: 100%;
+    margin: 17% auto;
+    align-content: center;
+    text-align: center;
+    font-size: 140%;
+    background-color: #2D2D39;
+    color: #82FF9E;
+    transition: opacity 0.1s ease;
+}
+
+a {
+    color: #82FF9E;
+}
+
+h1 {
+    margin: 1%;
+}
+
+ul {
+    list-style-type: none;
+    align-items: center;
+    text-align: center;
+}
+
+h5 {
+    color: #817c8a;
+}
+
+.message_holder {
+    text-align: left;
+    padding-left: 29.5%;
+    padding-bottom: 1%;
+}
+
+.message, .username, button{
+    border-radius: 10px;
+    background-color: #2D2D39;
+    border: 2px solid #82FF9E;
+    padding: 0.5%;
+    color: #82FF9E;
+}
+
+button:hover {
+    background-color: #82FF9E;
+    border: 2px solid #2D2D39;
+    color: #2D2D39;
+}
+
+#next {
+    border-radius: 10px;
+    background-color: #2D2D39;
+    color: #82FF9E;
+    font-size: 400%;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5%);
+    }
+    100% {
+        transform: translateX(0)
+    }
+}
+
+.logout:hover{
+    animation: bounce 0.8s ease;
+    animation-iteration-count: infinite;
+}
+
+#next:hover {
+    text-decoration: none;
+}
+
+#submit {
+    position: absolute;
+    bottom: 5%;
+    margin-left: 7%;
+}
+
+#usermsg {
+    margin-right: 5%;
+    position: absolute;
+    bottom: 5%;
+    left: 38%;
+}

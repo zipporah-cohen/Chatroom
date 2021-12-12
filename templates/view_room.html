@@ -2,12 +2,64 @@
 <html lang="en">
 <head>
     <title>My Chat App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        body {
+            background-color: #2D2D39;
+            width: 100%;
+            align-content: center;
+            margin-top: 7%;
+            margin-bottom: 7%;
+            text-align: center;
+            font-size: 140%;
+            background-color: #2D2D39;
+            color: #82FF9E;
+            transition: opacity 0.1s ease;
+        }
+        #messages {
+            text-align: left;
+            margin-left: 30%;
+        }
+        .members {
+            float:right;
+            position: fixed;
+            top: 0;
+            right: 0;
+            margin:3%;
+        }
+        button, #message_input {
+            border-radius: 10px;
+            background-color: #2D2D39;
+            border: 2px solid #82FF9E;
+            padding: 0.5%;
+            color: #82FF9E;
+        }
+        button:hover {
+            background-color: #82FF9E;
+            border: 2px solid #2D2D39;
+            color: #2D2D39;
+        }
+        #home_button {
+            float:left;
+            position:fixed;
+            top:0;
+            left:0;
+            margin:3%;
+        }
+        b {
+            font-weight: 500;
+            color: #817c8a;
+        }
+    </style>
 </head>
 <body>
 <h1>Welcome to chat room: {{ room.name }}</h1>
 
 
 <button type="button" id="load_older_messages_btn">Load Older Messages</button>
+<p></p>
 
 <div id="messages">
     {% for message in messages %}
@@ -15,17 +67,28 @@
     {% endfor %}
 </div>
 
-<form id="message_input_form">
+<br>
+<form method="post" id="message_input_form">
     <input type="text" id="message_input" placeholder="Enter your message here">
     <button type="submit">Send</button>
 </form>
 
+<div class="members">
 <h3>Members</h3>
 <ul>
     {% for member in room_members %}
         <li>{{ member._id.username }}</li>
     {% endfor %}
 </ul>
+<form method="get" action="{{url_for('edit_room', room_id= room._id )}}">
+    <button type="submit">Edit Room</button>
+</form>
+</div>
+
+<form method="get" action="{{url_for('home')}}">
+    <button type="submit" id="home_button">Home</button>
+</form>
+</body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
@@ -100,7 +163,7 @@
     socket.on('join_room_announcement', function (data) {
         if (data.username == "{{ username }}") {
             const newNode = document.createElement('div');
-            newNode.innerHTML = '<b>{{ username }}</b> has joined the room';
+            newNode.innerHTML = '<b>{{ username }} has joined the room</b> ';
             document.getElementById('messages').appendChild(newNode);
         }
     });
@@ -108,10 +171,8 @@
     socket.on('leave_room_announcement', function (data) {
         console.log(data);
         const newNode = document.createElement('div');
-        newNode.innerHTML = '<b>{data.username}</b> has left the room';
+        newNode.innerHTML = '<b>{data.username} has left the room</b>';
         document.getElementById('messages').appendChild(newNode);
     });
 </script>
-
-</body>
 </html>

@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>My Chat App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
-<h1>Welcome to Chatrooms!</h1>
-<h3>Hey there,{% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Guest{% endif %}!</h3>
+    {% if current_user.is_authenticated %}
+        <h1>Hey there, {{ current_user.username }}!</h1>
+    {% else %}
+        <h1>Welcome to Chatrooms!</h1>
+    {% endif %}
 
 {% if current_user.is_authenticated == false %}
     <h3>Please Login or Sign Up below to get chatting</h3>
@@ -15,11 +21,14 @@
 {% endif %}
 
 {% if current_user.is_authenticated %}
-    <h3>My rooms</h3>
-    <ul>
-        {% for room in rooms %}
-            <li><a href="/rooms/{{ room._id.room_id }}">{{ room.room_name }}</a></li>
-        {% endfor %}
+    <h3>My rooms:</h3>
+            {% for room in rooms %}
+                <h8><a href="/rooms/{{ room._id.room_id }}">{{ room.room_name }}</a></h8>
+            {% endfor %}
+            <br><br>
+            <form method="get" action="{{url_for('create_room')}}">
+                <button type="submit">Create a new room</button>
+            </form>
     </ul>
 {% endif %}
 </body>
