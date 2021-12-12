@@ -115,6 +115,7 @@ def edit_room(room_id):
                 remove_room_members(room_id, members_to_remove)
             message = 'Room edited successfully'
             room_members_str = ",".join(new_members)
+            return redirect(url_for('view_room', room_id=room_id))
         return render_template('edit_room.html', room=room, room_members_str=room_members_str, message=message)
     else:
         return "Room not found", 404

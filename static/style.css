@@ -13,6 +13,11 @@ a {
     color: #82FF9E;
 }
 
+a:hover {
+    text-decoration: none;
+    color: #817c8a;
+}
+
 h1 {
     margin: 1%;
 }
@@ -39,6 +44,7 @@ h5 {
     border: 2px solid #82FF9E;
     padding: 0.5%;
     color: #82FF9E;
+    margin: 0.5%;
 }
 
 button:hover {
@@ -52,18 +58,6 @@ button:hover {
     background-color: #2D2D39;
     color: #82FF9E;
     font-size: 400%;
-}
-
-@keyframes bounce {
-    0% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(5%);
-    }
-    100% {
-        transform: translateX(0)
-    }
 }
 
 .logout:hover{
