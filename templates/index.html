@@ -29,7 +29,9 @@
             <form method="get" action="{{url_for('create_room')}}">
                 <button type="submit">Create a new room</button>
             </form>
-    </ul>
+            <form method="get" action="{{url_for('logout')}}">
+                <button type="submit">Logout</button>
+            </form>
 {% endif %}
 </body>
 </html>
