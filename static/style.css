@@ -110,3 +110,17 @@ b {
     font-weight: 500;
     color: #817c8a;
 }
+button, #message_input {
+    border-radius: 10px;
+    background-color: #2D2D39;
+    border: 2px solid #82FF9E;
+    padding: 0.5%;
+    color: #82FF9E;
+}
+#messages div {
+    color: #82FF9E;
+}
+
+#messages div b {
+    color: #817c8a;
+}

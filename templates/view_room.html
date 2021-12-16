@@ -4,55 +4,7 @@
     <title>My Chat App</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../static/style.css">
-    <style>
-        body {
-            background-color: #2D2D39;
-            width: 100%;
-            align-content: center;
-            margin-top: 7%;
-            margin-bottom: 7%;
-            text-align: center;
-            font-size: 140%;
-            background-color: #2D2D39;
-            color: #82FF9E;
-            transition: opacity 0.1s ease;
-        }
-        #messages {
-            text-align: left;
-            margin-left: 30%;
-        }
-        .members {
-            float:right;
-            position: fixed;
-            top: 0;
-            right: 0;
-            margin:3%;
-        }
-        button, #message_input {
-            border-radius: 10px;
-            background-color: #2D2D39;
-            border: 2px solid #82FF9E;
-            padding: 0.5%;
-            color: #82FF9E;
-        }
-        button:hover {
-            background-color: #82FF9E;
-            border: 2px solid #2D2D39;
-            color: #2D2D39;
-        }
-        #home_button {
-            float:left;
-            position:fixed;
-            top:0;
-            left:0;
-            margin:3%;
-        }
-        b {
-            font-weight: 500;
-            color: #817c8a;
-        }
-    </style>
+    <link rel="stylesheet" href="../../static/style.css">
 </head>
 <body>
 <h1>Welcome to chat room: {{ room.name }}</h1>
@@ -154,8 +106,11 @@
 
     socket.on('receive_message', function (data) {
         console.log(data);
+        var username = data['username']
+        var created = data['created_at']
+        var message = data['message']
         const newNode = document.createElement('div');
-        newNode.innerHTML = '<b>{data.username}&nbsp;[{data.created_at}]:&nbsp;</b> {data.message}';
+        newNode.innerHTML = '<b>' + username + ' ['+ created + ']: </b>' + message;
         document.getElementById('messages').appendChild(newNode);
     });
 
