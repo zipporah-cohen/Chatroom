@@ -118,7 +118,10 @@ def edit_room(room_id):
             return redirect(url_for('view_room', room_id=room_id))
         return render_template('edit_room.html', room=room, room_members_str=room_members_str, message=message)
     else:
-        return "Room not found", 404
+        if (is_room_admin(room_id, current_user.username)==False):
+            return "You do not have the necessary privileges to edit this room", 404
+        else:
+            return "Room not found", 404
 
 
 @app.route('/rooms/<room_id>/')
