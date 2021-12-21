@@ -117,16 +117,18 @@
 
     socket.on('join_room_announcement', function (data) {
         if (data.username == "{{ username }}") {
+            var username = data['username']
             const newNode = document.createElement('div');
-            newNode.innerHTML = '<b>{{ username }} has joined the room</b> ';
+            newNode.innerHTML = '<b>' + username + ' has joined the room</b> ';
             document.getElementById('messages').appendChild(newNode);
         }
     });
 
     socket.on('leave_room_announcement', function (data) {
         console.log(data);
+        var username = data['username']
         const newNode = document.createElement('div');
-        newNode.innerHTML = '<b>{data.username} has left the room</b>';
+        newNode.innerHTML = '<b>' + username + ' has left the room</b>';
         document.getElementById('messages').appendChild(newNode);
     });
 </script>
