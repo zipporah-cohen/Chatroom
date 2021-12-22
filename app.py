@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from bson.json_util import dumps
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,flash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_socketio import SocketIO, join_room, leave_room
 from pymongo.errors import DuplicateKeyError
@@ -56,6 +56,10 @@ def signup():
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
+        if username == '':
+            print("yay")
+            flash("Please enter a username!")
+            return redirect(url_for('signup'))
         try:
             save_user(username, email, password)
             return redirect(url_for('login'))
